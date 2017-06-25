@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <title>Ninja Gold!</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="progress">
+        <p>Your Gold:</p>
+        <p id="gold">{{session['gold']}}</p>
+      </div>
+      <div id="forms">
+        <form action="/process_money" method="post">
+          <h2>Farm</h2>
+          <p>(Earns 10-20 gold)</p>
+          <button type="submit" name="button" value="farm">Find Gold</button>
+        </form><form action="/process_money" method="post">
+          <h2>Cave</h2>
+          <p>(Earns 5-10 gold)</p>
+          <button type="submit" name="button" value="cave">Find Gold</button>
+        </form><form action="/process_money" method="post">
+          <h2>House</h2>
+          <p>(Earns 2-5 gold)</p>
+          <button type="submit" name="button" value="house">Find Gold</button>
+        </form><form action="/process_money" method="post">
+          <h2>Casino</h2>
+          <p>(Earn/Lose 0-50 gold)</p>
+          <button type="submit" name="button" value="casino">Find Gold</button>
+        </form>
+      </div>
+    </div>
+    <h3>Activities:</h3>
+    <div id="activitesContainer">
+      {% for x in session['activities']:%}
+      <p>{{x}}</p>
+      {% endfor %}
+    </div>
+    <form action="/reset" method="post" id="reset">
+      <button type="submit" name="reset">Reset</button>
+    </form>
+  </body>
+</html>
